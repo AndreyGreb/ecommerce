@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router'
 import Link from 'next/link'
 
 import IconSettings from 'assets/icons/IconSettings.svg'
@@ -7,6 +8,8 @@ import IconList from 'assets/icons/IconList.svg'
 import IconBox from 'assets/icons/IconBox.svg'
 
 const Nav = () => {
+
+	const { pathname } = useRouter()
 
 	const inactiveLink = 'flex gap-1 p-1'
 	const activeLink = inactiveLink + ' bg-white text-blue-900 rounded-l-lg'
@@ -24,7 +27,7 @@ const Nav = () => {
 			<nav className='flex flex-col gap-2'>
 
 				<Link
-					className={activeLink}
+					className={pathname === '/' ? activeLink : inactiveLink}
 					href='/'
 				>
 					<IconHome />
@@ -32,7 +35,7 @@ const Nav = () => {
 				</Link>
 
 				<Link
-					className={inactiveLink}
+					className={pathname.includes('/products') ? activeLink : inactiveLink}
 					href='/products'
 				>
 					<IconBox />
@@ -40,7 +43,7 @@ const Nav = () => {
 				</Link>
 
 				<Link
-					className={inactiveLink}
+					className={pathname.includes('/orders') ? activeLink : inactiveLink}
 					href='/orders'
 				>
 					<IconList />
@@ -48,7 +51,7 @@ const Nav = () => {
 				</Link>
 
 				<Link
-					className={inactiveLink}
+					className={pathname.includes('/settings') ? activeLink : inactiveLink}
 					href='/settings'
 				>
 					<IconSettings />
