@@ -5,6 +5,9 @@ module.exports = withPlugins([
 	[withSvgr],
 	{
 		reactStrictMode: true,
-		swcMinify: true
+		swcMinify: true,
+		images: {
+			domains: ['lh3.googleusercontent.com']
+		}
 	}
 ])
