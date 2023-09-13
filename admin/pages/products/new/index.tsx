@@ -14,12 +14,8 @@ const NewProductPage = () => {
 	const formik = useFormik({
 		initialValues,
 		onSubmit: async ({ title, description, price }) => {
-
-			const data: CreateProductRequestType = { title, description, price }
-
-			await axios.post('api/products', data)
+			await axios.post<CreateProductRequestType, void>('/api/products', { title, description, price })
 		}
-
 	})
 
 	return (
