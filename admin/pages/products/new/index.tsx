@@ -1,9 +1,12 @@
+import { useRouter } from 'next/router'
 import { useFormik } from 'formik'
 import axios from 'axios'
 
 import { CreateProductRequestType } from 'types/axios'
 
 const NewProductPage = () => {
+
+	const router = useRouter()
 
 	const initialValues = {
 		title: '',
@@ -14,7 +17,12 @@ const NewProductPage = () => {
 	const formik = useFormik({
 		initialValues,
 		onSubmit: async ({ title, description, price }) => {
-			await axios.post<CreateProductRequestType, void>('/api/products', { title, description, price })
+			try {
+				await axios.post<CreateProductRequestType, void>('/api/products', { title, description, price })
+				router.push('/products')
+			} catch (error) {
+				console.log('error', error);
+			}
 		}
 	})
 
