@@ -4,6 +4,9 @@ const withSvgr = require('next-svgr')
 module.exports = withPlugins([
 	[withSvgr],
 	{
+        publicRuntimeConfig: {
+            apiUrl: process.env.PUBLIC_HOST
+        },
 		reactStrictMode: true,
 		swcMinify: true,
 		images: {
