@@ -8,6 +8,10 @@ export default async function handle(req: Request, res: Response) {
 	await mongooseConnect()
 	mongoose.Promise = clientPromise
 
+    if(method === 'GET') {
+        res.json(await Product.find())
+    }
+
 	if (method === 'POST') {
 		const { title, description, price } = req.body
 
